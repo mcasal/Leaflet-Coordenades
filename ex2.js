@@ -1,7 +1,8 @@
-//setView([LATITUD, LONGITUD], ZOOM)
-let mymap = L.map('mapid').setView([41.3868794, 2.17006783], 17);
+// EXERCICI 2
 
-// Tiles de openStreetMap pq és opensource
+//Fase 1: Mostrar latitud i longitud a cada click.
+let mymap = L.map('mapid2').setView([41.3868794, 2.17006783], 18);
+
 const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 
 L.tileLayer(tilesProvider, {
@@ -13,8 +14,13 @@ L.tileLayer(tilesProvider, {
     accessToken: 'your.mapbox.access.token'
 }).addTo(mymap);
 
-// Afegeix un marcador (Estil per defecte) a les coordenades indicades (C/Balmes n16)
-let marker = L.marker([41.386939819411694, 2.166012854408137]).addTo(mymap);
+let popup = L.popup();
 
-//
-marker.bindPopup("<b>Restaurant Centfocs</b><br>Restaurante mediterráneo<br>Carrer de Balmes, 16, 08007 Barcelona").openPopup();
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent("Mis coordenadas son: " + e.latlng.toString())
+        .openOn(mymap);
+}
+
+mymap.on('click', onMapClick)
