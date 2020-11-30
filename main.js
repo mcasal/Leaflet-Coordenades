@@ -13,4 +13,8 @@ L.tileLayer(tilesProvider, {
     accessToken: 'your.mapbox.access.token'
 }).addTo(mymap);
 
+// Afegeix un marcador (Estil per defecte) a les coordenades indicades (C/Balmes n16)
 let marker = L.marker([41.386939819411694, 2.166012854408137]).addTo(mymap);
+
+//
+marker.bindPopup("<b>Restaurant Centfocs</b><br>Restaurante mediterráneo<br>Carrer de Balmes, 16, 08007 Barcelona").openPopup();
