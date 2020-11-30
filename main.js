@@ -12,3 +12,5 @@ L.tileLayer(tilesProvider, {
     zoomOffset: -1,
     accessToken: 'your.mapbox.access.token'
 }).addTo(mymap);
+
+let marker = L.marker([41.386939819411694, 2.166012854408137]).addTo(mymap);
