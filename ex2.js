@@ -14,12 +14,16 @@ L.tileLayer(tilesProvider, {
     accessToken: 'your.mapbox.access.token'
 }).addTo(mymap);
 
-// a cada click mostra les coordenades en un popup
-let popup = L.popup();
+//Fase 2: a cada click posa un marcador amb les coordenades
+let marker = null;
+// primer comproba si hi ha algun marcador. Si hi és, l'esborra.
 function onMapClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent(`Mis coordenadas son:<br><b>Lat: ${e.latlng.lat} Lng: ${e.latlng.lng}</b>`)
-        .openOn(mymap);
-}
-mymap.on('click', onMapClick)
+    if (marker !== null) {
+        mymap.removeLayer(marker);
+    }
+    marker = new L.marker([e.latlng.lat, e.latlng.lng]);
+    mymap.addLayer(marker);
+    marker.bindPopup(`Mis coordenadas son:<br><b>Lat: ${e.latlng.lat} Lng: ${e.latlng.lng}</b>`).openPopup();
+};
+
+mymap.on('click', onMapClick);
