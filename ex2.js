@@ -14,13 +14,12 @@ L.tileLayer(tilesProvider, {
     accessToken: 'your.mapbox.access.token'
 }).addTo(mymap);
 
+// a cada click mostra les coordenades en un popup
 let popup = L.popup();
-
 function onMapClick(e) {
     popup
         .setLatLng(e.latlng)
-        .setContent("Mis coordenadas son: " + e.latlng.toString())
+        .setContent(`Mis coordenadas son:<br><b>Lat: ${e.latlng.lat} Lng: ${e.latlng.lng}</b>`)
         .openOn(mymap);
 }
-
 mymap.on('click', onMapClick)
